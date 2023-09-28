@@ -7,7 +7,10 @@ rm(list = ls())
 source("bin/functions.R")
 
 #Plot tp png file
-makePNG=F
+makePNG=T
+#namingScheme=c("A","B_T","B_U","C")
+namingScheme=c("Treated","Mix-Treated","Mix-Untreated","Untreated")
+
 
 #Remove specific genes
 remove_gene=TRUE
@@ -207,7 +210,7 @@ if(length(uniq_groups)==2){
   legend(x = "center",legend = c("Treated", "Untreated"), col = pal,pch = 16, horiz = F)
 }else{    
   legend_groups=levels(factor(uniq_groups))
-  legend(x = "bottomright",legend = c("Treated group", "Mix group treated","Mix group untreated", "Untreated", "Time of treatment", "Significant difference"), col = c(pal,"black","black"),pch = c(16, 16, 16, 16, NA, 42), lty = c(NA, NA, NA, NA, 2, NA),  horiz = F, cex=1.7)
+  legend(x = "bottomright",y.intersp = 0.7,legend = c(namingScheme, "Time of treatment", "Significant difference"), col = c(pal,"black","black"),pch = c(16, 16, 16, 16, NA, 42), lty = c(NA, NA, NA, NA, 2, NA),  horiz = F, cex=1.7)
 }
 
 

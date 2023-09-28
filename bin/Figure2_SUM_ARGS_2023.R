@@ -7,9 +7,11 @@ rm(list = ls())
 source("bin/functions.R")
 
 #Plot tp png file
-makePNG=F
+makePNG=T
 calcSig=F
 addSig=T
+#namingScheme=c("A","B_T","B_U","C")
+namingScheme=c("Treated","Mix-Treated","Mix-Untreated","Untreated")
 
 #Remove specific genes
 remove_gene=TRUE
@@ -183,7 +185,7 @@ if(makePNG) png(filename = "Results/Fig2_medSums_2023.png", width = 7.4, height 
 
 
 par(mar=c(5,3,1.5,0), mgp=c(1.6,0.5,0), font.lab=2, mfrow=c(1,2))
-beeswarm(resistance_sums ~ allData$Week, pch=16, ylim=c(0,1.3), 
+beeswarm(resistance_sums ~ allData$Week, pch=16, ylim=c(0,1.45), 
          cex=0.5, pwcol = ifelse(as.numeric(allData$OUA)==1,1,2), las=2, 
          xlab="", ylab="Median sum of genes per 16S gene")
 abline(v = 1.5)
@@ -224,7 +226,7 @@ names(pal)=c("A","B_T","B_U","C")
 pal[allData$BGROUP]
 
 #par(mar=c(3,2.5,1.5,0), mgp=c(1.4,0.4,0), font.lab=2)
-beeswarm(resistance_sums ~ allData$Week, pch=16, ylim=c(0,1.3), 
+beeswarm(resistance_sums ~ allData$Week, pch=16, ylim=c(0,1.45), 
          cex=0.5, pwcol = pal[allData$BGROUP], las=2, 
          xlab="", ylab="Median sum of genes per 16S gene")
 abline(v = 1.5)
@@ -236,10 +238,11 @@ for(BGR_plot in unique(geneDummyBGR$GROUP)) {
   
   lines(as.numeric(factor(BGR_week$WEEK)), BGR_week$VALS, lwd=3, 
         col = pal[unique(dummyBGRplot$GROUP)])
-  legend(x = "topright",
-         legend = c("A", "B_T","B_U", "C"), col = pal,pch = c(16, 16, 16, 16))
-  
+    
 }
+legend(x = "topright",y.intersp = 0.7,
+       legend = namingScheme, col = pal,pch = c(16, 16, 16, 16))
+
 
 if(addSig) {
   text(c(2:7),rep(1.2,5),c("a","a","b","c","b","d"))
