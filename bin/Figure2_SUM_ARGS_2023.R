@@ -7,7 +7,7 @@ rm(list = ls())
 source("bin/functions.R")
 
 #Plot tp png file
-makePNG=T
+makePNG=F
 calcSig=F
 addSig=T
 

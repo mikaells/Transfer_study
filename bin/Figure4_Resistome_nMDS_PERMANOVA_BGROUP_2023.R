@@ -11,7 +11,7 @@ library(RColorBrewer)
 library(phyloseq)
 
 addEnvfit=F
-makePNG=T
+makePNG=F
 
 #Remove specific genes
 remove_gene=TRUE

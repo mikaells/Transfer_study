@@ -7,7 +7,7 @@ rm(list = ls())
 source("bin/functions.R")
 
 #Plot tp png file
-makePNG=T
+makePNG=F
 
 #Remove specific genes
 remove_gene=TRUE
@@ -211,7 +211,7 @@ if(length(uniq_groups)==2){
 }
 
 
-dev.off()
+if(makePNG) dev.off()
 ###
 
 
