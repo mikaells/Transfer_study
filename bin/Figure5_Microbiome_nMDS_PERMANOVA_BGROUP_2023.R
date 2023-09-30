@@ -12,6 +12,9 @@ library(phyloseq)
 
 addEnvfit=F
 makePNG=T
+#namingScheme=c("A","B_T","B_U","C")
+namingScheme=c("Treated","Mix-Treated","Mix-Untreated","Untreated")
+
 
 allData=CleanData16S(PATH = "data/Tax_and_counts_seq55_56.csv",normalize = T,ConRegEx="NEG|Neg|NC|NEC|Pos",removeNul = F,condenseB = T)
 
@@ -216,7 +219,7 @@ pchs_treatment=c(1,16)
 pchs=pchs_treatment[factor(allData$Note)]
 
 plot_count=0
-#date=uniq_dates[2]
+date=uniq_dates[7]
 for (date in uniq_dates){
   sample_date=allData$DATE[which(allData$DATE==date)[1]]
   sample_week=allData$Week[which(allData$DATE==date)[1]]
@@ -322,7 +325,8 @@ par(mar=c(0.1,0.1,0.1,0.1))
 plot(1, type = "n", axes=FALSE, xlab="", ylab="")
 box(col="transparent")
 #legend(x = "top",   pch=16, cex=.9, horiz = T, text.width=c(.03, 0.015,0.015,0.015,0.015,0.015,0.015,0.015,0.015), legend = c("Weeks", "3", "4",  "5", "6","7", "10", "13", "16"), col = c("transparent",pal_Date),box.col = "transparent",bg = "transparent")
-legend(x = "center",  pch=16 ,text.width=c(.05,.09,.09,.09), cex=.9, horiz = T, legend = c( "A", "B_T", "B_U", "C"), col = c(pal),box.col = "transparent",bg = "transparent")
+#legend(x = "center",  pch=16 ,text.width=c(.05,.09,.09,.09), cex=.9, horiz = T, legend = c( "A", "B_T", "B_U", "C"), col = c(pal),box.col = "transparent",bg = "transparent")
+legend(x = "center",  pch=16,ncol=2 ,text.width=c(.2,.19,.2,.9), cex=.9, horiz = F, legend = namingScheme, col = c(pal),box.col = "transparent",bg = "transparent")
 
 
 

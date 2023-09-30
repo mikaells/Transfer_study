@@ -11,7 +11,10 @@ library(RColorBrewer)
 library(phyloseq)
 
 addEnvfit=F
-makePNG=F
+makePNG=T
+#namingScheme=c("A","B_T","B_U","C")
+namingScheme=c("Treated","Mix-Treated","Mix-Untreated","Untreated")
+
 
 #Remove specific genes
 remove_gene=TRUE
@@ -182,7 +185,7 @@ for (date in uniq_dates){
   dateBGROUP=allData[["BGROUP"]][dateIndex]
   
   #Calculating nMDS
-  NMDS=metaMDS(dateData, parallel=2, trace = 0)
+  NMDS=metaMDS(dateData, parallel=1, trace = 0)
   NMDSscores=scores(NMDS, display = "sites")
   # distFromCenter = (sqrt(NMDSscores[, 1]^2 + NMDSscores[, 2]^2))
   # #plot(distFromCenter)
@@ -269,7 +272,7 @@ par(mar=c(0.1,0.1,0.1,0.1))
 plot(1, type = "n", axes=FALSE, xlab="", ylab="")
 box(col="transparent")
 #legend(x = "top",   pch=16, cex=.9, horiz = T, text.width=c(.03, 0.015,0.015,0.015,0.015,0.015,0.015,0.015,0.015), legend = c("Weeks", "3", "4",  "5", "6","7", "10", "13", "16"), col = c("transparent",pal_Date),box.col = "transparent",bg = "transparent")
-legend(x = "center",  pch=16 ,text.width=c(.05,.09,.09,.09), cex=.9, horiz = T, legend = c( "A", "B_T", "B_U", "C"), col = c(pal),box.col = "transparent",bg = "transparent")
+legend(x = "center",  pch=16,ncol=2 ,text.width=c(.2,.19,.2,.9), cex=.9, horiz = F, legend = namingScheme, col = c(pal),box.col = "transparent",bg = "transparent")
 
 
 
