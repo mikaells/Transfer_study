@@ -9,6 +9,7 @@ library(vegan)
 library(beeswarm)
 library(RColorBrewer)
 library(phyloseq)
+library(stringr)
 
 addEnvfit=F
 makePNG=T
